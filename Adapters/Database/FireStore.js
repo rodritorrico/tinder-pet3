@@ -23,7 +23,6 @@ class FireStore{
             documents.push({id: doc.id, ... doc.data()});     
         });
     
-        console.log(documents)
         return documents;  
     }
 
