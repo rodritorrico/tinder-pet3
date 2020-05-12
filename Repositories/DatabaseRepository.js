@@ -10,6 +10,10 @@ class DatabaseRepository{
     async add(document, collectionName){
         this.db.addDocument(document,collectionName);
     }
+
+    async getOne(id, collectionName){
+        return await this.db.getOneDocument(id,collectionName);
+    }
 }
 
 module.exports = DatabaseRepository;

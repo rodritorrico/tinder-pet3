@@ -13,7 +13,6 @@ serverReposiry.itializeServer();
  
 exports.app = Functions.https.onRequest(serverReposiry.server.app); //this is for firebase function
 
-//TODO: CRUD users
 //TODO: get one pet
 //TODO: add pet with a user
 //TODO: add image

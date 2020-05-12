@@ -23,6 +23,18 @@ class UserController{
             response.send({status: '500',message: exception});
         }
     }
+
+    async getOneUser(request,response){
+        
+ 
+        try{
+            let id = request.params.id;
+            let document = await this.dataBaseRepository.getOne(id,this.collectionName);
+            response.send({status:'200',message:'Returned user with id',payload: document});
+        }catch(exception){
+            response.send({status: '500', message: exception})
+        }
+    }
 }
 
 module.exports = UserController;

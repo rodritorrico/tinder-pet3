@@ -30,6 +30,10 @@ class Router{
             petController.listPets(request,response);
         });  
 
+        this.app.get(principalRoute + '/:id', async(request, response)=>{
+            petController.getOnePet(request,response);
+        })
+
         this.app.post(principalRoute + '/add', async(request, response)=>{
             petController.addPet(request,response);
         })
@@ -41,6 +45,10 @@ class Router{
 
         this.app.get(principaleRoute, async(request, response)=>{
             userController.listUsers(request, response);
+        })
+
+        this.app.get(principaleRoute + '/:id', async(request,response)=>{
+            userController.getOneUser(request,response);
         })
 
         this.app.post(principaleRoute + '/add', async(request, response)=>{

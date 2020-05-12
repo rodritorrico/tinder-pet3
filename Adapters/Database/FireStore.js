@@ -30,6 +30,14 @@ class FireStore{
         let collection = await this.getCollection(collectionName);
         collection.add(document);
     }
+
+    async getOneDocument(id,collectionName){
+        let collection = await this.getCollection(collectionName);
+        let docuemtionRef = collection.doc(id);
+        let document = await docuemtionRef.get();
+
+        return document.data();
+    }
 }
 
 module.exports = FireStore;

@@ -14,6 +14,16 @@ class PetController{
         }
     }
 
+    async getOnePet(request,response){
+        try{
+            let id = reques.params.id;
+            let document = await this.dataBaseRepository.getOne(id,this.collectionName);
+            response.send({status: '200', message: 'this is the pet with the id', payload: document});
+        }catch(exception){
+            response.send({status: "500", message: exception})
+        }
+    }
+
     addPet(request,response){
         try{
             let document = request.body 
