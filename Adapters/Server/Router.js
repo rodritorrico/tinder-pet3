@@ -14,7 +14,6 @@ class Router{
         this.defineUserRoutes();
     }
 
-
     definePrincipalRoutes(){
         let mainController = new MainController(this.databaseRepository);
 
@@ -42,6 +41,10 @@ class Router{
 
         this.app.get(principaleRoute, async(request, response)=>{
             userController.listUsers(request, response);
+        })
+
+        this.app.post(principaleRoute + '/add', async(request, response)=>{
+            userController.addUser(request,response);
         })
     }
 }

@@ -14,15 +14,15 @@ class UserController{
         }
     }
 
-    // addPet(request,response){
-    //     try{
-    //         let document = request.body 
-    //         this.dataBaseRepository.add(document,this.collectionName); 
-    //         response.send({status:'200', message: 'Pet added succesfully'});
-    //     }catch(exception){
-    //         response.send({status: '500',message: exception});
-    //     }
-    // }
+    async addUser(request,response){
+        try{
+            let document = request.body;
+            this.dataBaseRepository.add(document,this.collectionName); 
+            response.send({status:'200', message: 'User added succesfully'});
+        }catch(exception){
+            response.send({status: '500',message: exception});
+        }
+    }
 }
 
 module.exports = UserController;
