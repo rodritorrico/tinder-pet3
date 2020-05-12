@@ -1,4 +1,3 @@
-const FireStore = require('../Adapters/Database/FireStore');
 
 class PetController{
     constructor(dataBaseRepository){

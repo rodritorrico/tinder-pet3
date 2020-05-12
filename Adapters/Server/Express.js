@@ -2,9 +2,7 @@ const  express = require('express');
 const cors = require('cors');
 const bodyParser = require('body-parser');
 
-const MainController = require('./../../Controllers/MainController');
-const PetController = require('./../../Controllers/PetController');
-
+const Router = require('./Router');
 
 
 class Express{
@@ -33,27 +31,10 @@ class Express{
     }
 
     defineRoutes(){
-        this.definePrincipalRoutes();
-        this.definePetRoutes();
+        const router = new Router(this.app,this.databaseRepository);
+        router.defineRoutes();
     }
 
-    definePrincipalRoutes(){
-        let mainController = new MainController(this.databaseRepository);
-
-        this.app.get('/',(request, response) => {
-            mainController.root(request,response);
-        });  
-    }
-
-    definePetRoutes(){
-        let petController = new PetController(this.databaseRepository);
-        this.app.get('/pet',async (request, response) => {
-            petController.listPets(request,response);
-        });  
-        this.app.post('/pet/add', async(request, response)=>{
-            petController.addPet(request,response);
-        })
-    }
 }
          
 module.exports = Express;
