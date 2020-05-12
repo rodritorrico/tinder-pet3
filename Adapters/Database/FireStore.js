@@ -31,12 +31,26 @@ class FireStore{
         collection.add(document);
     }
 
+    async addDocumentWithSpecificId(document,collectionName,id){
+        let collection  = await this.getCollection(collectionName);
+        collection.doc(id).set(document);
+    }
+
+    async getDocumentById(id,collenctionName){
+        let collection = await this.getCollection(collenctionName);
+        return collection.doc(id);
+    }
+
     async getOneDocument(id,collectionName){
-        let collection = await this.getCollection(collectionName);
-        let docuemtionRef = collection.doc(id);
+        let docuemtionRef = await this.getDocumentById(id,collectionName);
         let document = await docuemtionRef.get();
 
         return document.data();
+    }
+
+    async updated(id,collectionName,key,data){
+        let docuemtionRef = await this.getDocumentById(id,collectionName);
+        docuemtionRef.update({key: data})
     }
 }
 

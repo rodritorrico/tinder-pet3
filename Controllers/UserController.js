@@ -17,7 +17,7 @@ class UserController{
     async addUser(request,response){
         try{
             let document = request.body;
-            this.dataBaseRepository.add(document,this.collectionName); 
+            this.dataBaseRepository.addWithId(document,this.collectionName,document.uid); 
             response.send({status:'200', message: 'User added succesfully'});
         }catch(exception){
             response.send({status: '500',message: exception});
@@ -25,8 +25,6 @@ class UserController{
     }
 
     async getOneUser(request,response){
-        
- 
         try{
             let id = request.params.id;
             let document = await this.dataBaseRepository.getOne(id,this.collectionName);
