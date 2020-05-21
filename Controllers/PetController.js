@@ -1,4 +1,6 @@
 
+const UserUseCase = require('./../UseCases/UserUseCase');
+
 class PetController{
     constructor(dataBaseRepository){
         this.dataBaseRepository = dataBaseRepository
@@ -26,30 +28,10 @@ class PetController{
 
     async addPet(request,response){
         try{
-            
+            let userUseCase = new UserUseCase(this.dataBaseRepository);
             let document = request.body;
-            
-            let user = await this.dataBaseRepository.getOne(document.uid,'users');
-
-            console.log(user);
-
-        
-            // let userPetList = [];
-
-            // if(user.petList === undefined){
-            //     userPetList = [];
-            // }else{
-            //     userPetList = use.petList;
-            // }
-
-            // userPetList.push(document.id);
-            // console.log(userPetList);
-            
-            // this.dataBaseRepository.update(user.id,'users','pets',)
-            
-            // this.dataBaseRepository.add(document,this.collectionName);
-            
-
+            let reference = await this.dataBaseRepository.add(document,this.collectionName); 
+            userUseCase.addPetIdToUserList(document.uid,reference.id);
             response.send({status:'200', message: 'Pet added succesfully'});
         }catch(exception){
             response.send({status: '500',message: exception});

@@ -28,12 +28,18 @@ class FireStore{
 
     async addDocument(document,collectionName){
         let collection = await this.getCollection(collectionName);
-        collection.add(document);
+        let reference = await collection.add(document)
+        return reference;
     }
 
     async addDocumentWithSpecificId(document,collectionName,id){
         let collection  = await this.getCollection(collectionName);
         collection.doc(id).set(document);
+    }
+
+    async updateDocument(data,collectionName,id){
+        let collection = await this.getCollection(collectionName);
+        collection.doc(id).update(data);
     }
 
     async getDocumentById(id,collenctionName){

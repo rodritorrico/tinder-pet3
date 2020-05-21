@@ -7,12 +7,16 @@ class DatabaseRepository{
         return await this.db.getCollectionList(collectionName);
     }
 
-    async add(document, collectionName){
-        this.db.addDocument(document,collectionName);
+    async add(document, collectionName){  //returns a reference to get the id
+        return await this.db.addDocument(document,collectionName);
     }
 
     async addWithId(document, collectionName, id){
         this.db.addDocumentWithSpecificId(document,collectionName, id);
+    }
+
+    async updateDocument(data, collectionName, id){
+        this.db.updateDocument(data,collectionName,id);
     }
 
     async getOne(id, collectionName){
